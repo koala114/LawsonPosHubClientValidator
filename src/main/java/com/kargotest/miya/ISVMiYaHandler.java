@@ -89,14 +89,21 @@ public class ISVMiYaHandler implements HTTPServer.ContextHandler {
                         {"C1", "SUCCESS"},
                         {"C2", "PAYSUCCESS"},
                         {"C3", "PAYSUCCESS"},
-                        {"C4", "支付成功"},
+                        {"C4", "[微信]支付成功！"},
                         {"C5",orignOrderId},
                         {"C6", "4200002057202401304875893631"},
                         {"C7", "1"},
-                        {"C8", date},
-                        {"C9", date},
-                        {"C14", "支付成功"},
-                        {"C15", "H"},
+                        {"C8", "1"}, // 1微信
+                        {"C9", "o1vUMtzdtjJDtSOb_j291f8aIDwg"}, // 微信 openid
+                        {"C10", "[590|0|0|0|0|0]"},
+                        {"C11", "N"},
+                        {"C12", date},
+                        {"C13", date},
+                        {"C14", "[微信]支付成功！"},
+                        {"C17", "wx273772ce26499402"}, //appid
+                        {"C18", "wx5f57b93140cbea5c"}, //微信 sub_appid
+                        {"C19", "omCzZw9aovin3tWRiqU1JPUwRAQA"}, // 微信 sub_openid
+                        {"C30", "7EEEBB13062C4DD29363B6D308767544"},
                 }).collect(Collectors.toMap(d -> d[0], d -> d[1]));
             }
             else {
@@ -120,14 +127,16 @@ public class ISVMiYaHandler implements HTTPServer.ContextHandler {
                     {"C1", "SUCCESS"},
                     {"C2", "PAYWAIT"},
                     {"C3", "PAYWAIT"},
-                    {"C4", "处理中"},
+                    {"C4", "[微信]订单已下单,等待买家确认支付"},
                     {"C5",orignOrderId},
-                    {"C6", "4200002057202401304875893631"},
                     {"C7", "1"},
-                    {"C8", date},
-                    {"C9", date},
-                    {"C14", "处理中"},
-                    {"C15", "H"},
+                    {"C8", "1"},
+                    {"C10", "[0|0|0|0|0|0]"},
+                    {"C13", date},
+                    {"C14", "[微信]订单已下单,等待买家确认支付"},
+                    {"C17", "wx273772ce26499402"},
+                    {"C24", "微信"},
+                    {"C30", "756D5FF6D9749D6D4A944AAABC136F51"},
             }).collect(Collectors.toMap(d -> d[0], d -> d[1]));
         }
 
@@ -356,14 +365,11 @@ public class ISVMiYaHandler implements HTTPServer.ContextHandler {
                     {"C6", "4200002057202401304875893631"},
                     {"C7", dataField.get("B4")}, // 金额
                     {"C8", "1"}, //1-微信,3-支付宝
-                    {"C9", "o1vUMt-1PRt0Le-s78kN5fr1jvnY"},
                     {"C10", "[1|0|0|0|0|0]"},
                     {"C12", date},
                     {"C13", date},
                     {"C14", "[微信]支付处理中！"},
-                    {"C17", "wx273772ce26499402"},
-                    {"C18", "owYXn536-c5nmFfeGLOrX_mxkyv0"},
-                    {"C19", "wxc80ace02b7a6968d"},
+                    {"C17", "wx273772ce26499402"}, //微信 appid
                     {"C24", "微信"},
                     {"C29", "{}"},
                     {"C30", "BEA1052B5DE29322991C6276DB1B07D1"},
@@ -496,4 +502,5 @@ public class ISVMiYaHandler implements HTTPServer.ContextHandler {
         }
     }
 }
+
 
