@@ -27,6 +27,8 @@ public class ZhongBaiISVHandler implements HTTPServer.ContextHandler {
         JsonNode reqObj = mapper.readTree(zhongBaiBody);
         String service = reqObj.get("service").asText();
         if(service.equals("101")){
+            // {"data":{"bill":{"sgs":[{"barcode":"6943870510689","catid":"05","code":"6943870510689","hjje":1000,"hjzk":0,"jg":500,"name":"地道肠黑椒味","ppid":"","rowno":1,"sj":500,"sl":2000,"xxtax":0}],"sysy":0,"tot":1,"type":"1","xsje":1000,"ysje":1000,"zsl":2000,"zzke":0},"cashier":"35008801","listNo":"3500880133590901","orderNo":"06350088012023120614454081","payCode":"666613297933851","posId":"01","storeCode":"350088","transAmt":1000,"transDate":"20231206144622","useFlag":1},"mcId":"06","service":"101","traceId":"56adace447e540a38bd02db2eb5de154","version":"1.0"}
+            // {"traceId":"56adace447e540a38bd02db2eb5de154","mcId":"06","retCode":"00","resultCode":"SUCCESS","payMsg":"中百券06350088012023120614454081","data":{"gmt":"20231206144623","orderNo":"06350088012023120614454081","transAmt":1000,"useFlag":1,"factAmt":0,"nti":0,"funds":[{"rowno":1,"code":"3304","name":"中百券","je":0,"ye":0,"batch":"06350088012023120614454081"}]}}
             result = "{\"traceId\":\"0649aab8b81e48cba035451117277b52\",\"mcId\":\"06\",\"retCode\":\"00\",\"resultCode\":\"SUCCESS\",\"payMsg\":\"中百钱包310100003103076余额81.60\",\"data\":{\"gmt\":\"20240307154236\",\"orderNo\":\"06350088022024030715423887\",\"orderId\":\"154236\",\"transAmt\":1840,\"useFlag\":1,\"factAmt\":1840,\"nti\":0,\"funds\":[{\"rowno\":1,\"code\":\"014\",\"name\":\"中百钱包\",\"je\":1840,\"payno\":\"310100003103076\",\"ye\":8160,\"batch\":\"06350088022024030715423887\"}]}}";
         }
         else if(service.equals("401")) {
@@ -47,5 +49,6 @@ public class ZhongBaiISVHandler implements HTTPServer.ContextHandler {
         }
     }
 }
+
 
 
