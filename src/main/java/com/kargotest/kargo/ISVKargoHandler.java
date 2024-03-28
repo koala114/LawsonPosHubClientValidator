@@ -135,6 +135,7 @@ public class ISVKargoHandler implements HTTPServer.ContextHandler {
             JsonNode jsonNode = redeemprepaid(redeemprepaidReqObj);
             result = jsonNode.toString();
         }
+        else if(path.equals("refundadvance"))
 
         resp.getHeaders().add("Content-Type", "application/json");
         resp.send(200, result);
@@ -160,6 +161,26 @@ public class ISVKargoHandler implements HTTPServer.ContextHandler {
         return resp;
     }
 
+    public JsonNode refundadvance(JsonNode jsonNode){
+        JsonNode root = mapper.createObjectNode();
+        JsonNode resp = null;
+        try{
+            Thread.sleep(9000);
+            resp = mapper.readTree("{\"merchantTransactionID\":\"208888271354355513\",\"kargoCardTransactionID\":\"001053103198\",\"hostTransactionID\":\"4200001025202403271354356576\",\"responseCode\":\"0000\",\"reasonCode\":\"0000\",\"responseMessage\":\"Txn completed successfully\",\"prepaidBalance\":39.4,\"pointsBalance\":0,\"accountStatus\":\"WALLET:WCTPAY\",\"amountRequested\":39.4,\"amountProcessed\":39.4,\"primaryAccountNumber\":\"132692326141378115\",\"originKargoCardTransactionID\":\"001053103098\"}");
+        }
+        catch (JsonProcessingException jException){
+            throw new RuntimeException(jException);
+        }
+        catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        ((ObjectNode) resp).put("merchantTransactionID", jsonNode.get("merchantTransactionID").textValue());
+        ((ObjectNode) resp).put("amountRequested", jsonNode.get("transactionAmount").doubleValue());
+        ((ObjectNode) resp).put("amountProcessed", jsonNode.get("transactionAmount").doubleValue());
+
+        return resp;
+    }
+
     private JsonNode convertErrorCode(Double d, JsonNode resp){
         int amount = d.intValue();
         String key = "0000";
@@ -168,6 +189,8 @@ public class ISVKargoHandler implements HTTPServer.ContextHandler {
 
         ((ObjectNode) resp).put("reasonCode", key);
         ((ObjectNode) resp).put("responseCode", key);
+        ((ObjectNode) resp).put("amountRequested", d);
+        ((ObjectNode) resp).put("amountProcessed", d);
 
         ((ObjectNode) resp).put("responseMessage", errorCodes.get(key));
 

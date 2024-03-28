@@ -3132,7 +3132,7 @@ public class HTTPServer {
             host.addContext("/dmall/coupon/", new DuoDian(), "POST");
             host.addContext("/pos/v1/pos/", new YoRen(), "POST");
             host.addContext("/ebuyweb-posp/api/", new ISVeBuyHandler(), "POST");
-            host.addContext("/rps/gift/server/api/program-pyt-pp/v1.0/redeemprepaid", new ISVKargoHandler(), "POST");
+            host.addContext("/rps/gift/server/api/program-pyt-pp/v1.0/", new ISVKargoHandler(), "POST");
             host.addContext("/Payment", new ISVXinLiHandler(), "POST");
             host.addContext("/OrderQuery", new ISVXinLiHandler(), "POST");
             host.addContext("/Refund", new ISVXinLiHandler(), "POST");
